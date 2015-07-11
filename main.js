@@ -1,14 +1,12 @@
 (function() {
-  var data, fs, html, solution;
 
-  fs = require("fs");
+  var fs = require("fs");
+  var solution = require("./solution"); // an object containing methods
 
-  solution = require("./solution");
+  var data = JSON.parse(fs.readFileSync("activity_feed.json"));
+  var html = solution.generateActivityList(data);
 
-  data = JSON.parse(fs.readFileSync("activity_feed.json"));
-
-  html = solution.generateActivityList(data);
-
+  // Write out to an HTML file
   fs.writeFileSync("output.html", html, "utf8");
 
 }).call(this);
