@@ -1,0 +1,53 @@
+html
+  head
+    <link href="https://www.airtasker.com/stylesheets/style.css" rel="stylesheet">
+  body
+
+    ul.list.activity-feed
+      each activity, i in activities
+
+        case activity.eventType
+          when "posted"
+            li.activity-feed-item
+              a(href=activity.profileHref1 style="background-image:url(" + activity.profileBg1 + "); padding-left:18px;").user-name #{activity.profileName1}
+              |  posted a task 
+              a(href=activity.taskHref) #{activity.taskName}
+
+
+          when "completed"
+            li.activity-feed-item
+              a(href=activity.profileHref1 style="background-image:url(" + activity.profileBg1 + "); padding-left:18px;").user-name #{activity.profileName1}
+              |  completed 
+              a(href=activity.taskHref) #{activity.taskName}
+
+
+          when "assigned"
+            li.activity-feed-item
+              a(href=activity.profileHref1 style="background-image:url(" + activity.profileBg1 + "); padding-left:18px;").user-name #{activity.profileName1}
+              |  assigned 
+              a(href=activity.taskHref) #{activity.taskName}
+              |  to 
+              a(href=activity.profileHref2 style="background-image:url(" + activity.profileBg2 + "); padding-left:18px;").user-name #{activity.profileName2}
+
+
+          when "bid"
+            li.activity-feed-item
+              a(href=activity.profileHref1 style="background-image:url(" + activity.profileBg1 + "); padding-left:18px;").user-name #{activity.profileName1}
+              |  bid on 
+              a(href=activity.taskHref) #{activity.taskName}
+
+
+          when "comment"
+            li.activity-feed-item
+              a(href=activity.profileHref1 style="background-image:url(" + activity.profileBg1 + "); padding-left:18px;").user-name #{activity.profileName1}
+              |  commented on 
+              a(href=activity.taskHref) #{activity.taskName}
+
+
+          default
+            li.activity-feed-item
+              a(href=activity.profileHref1 style="background-image:url(" + activity.profileBg1 + "); padding-left:18px;").user-name #{activity.profileName1}
+              |  did something with 
+              a(href=activity.taskHref) #{activity.taskName}
+
+
