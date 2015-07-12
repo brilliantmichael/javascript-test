@@ -1,10 +1,32 @@
 ##Airtasker Javascript Test
 
-Thanks for your interest in Airtasker.  As part of our hiring process Airtasker likes to ask candidates to complete a short exercise.  It is designed to allow candidates to show off their coding skills and helps us assess a candidate's abilities.
+---
 
-The exercise should take between 2 and 4 hours to complete.
+Sunday, 12 July 2015
 
-To complete the exercise please fork this repository and then let us know when you are ready for us to review your solution.
+###Implementation details
+
+| Feature     | Module      | Comments  |
+| ----------- |:-----------:| ---------:|
+| Tests       | Mocha       | -         |
+| Server      | Express 1.4 | -         |
+| Templating  | Jade        | -         |
+
+###How to test and run
+
+Context is in ```package.json ```.
+
+To run, navigate to the application root and run:
+
+    # Tests
+    npm test
+
+NB: The test will probably fail for the original test that checks for the raw HTML equivalence. The Jade template in this implementation won't necessarily product the exact same string, but it will produce identical HTML elements.
+
+    # To see the generated HTML in a browser at http://localhost:3000
+    npm start
+
+---
 
 ###Objective
 
