@@ -4,40 +4,8 @@
 
   var jade = require("jade");
   var _ = require("lodash"); // our trusty "data manipulator"
-
-  // A little method to reach deep into a JSON object using a string
-  // and returning null if the path is not found
-  var getDeepObj = function(startingReference, path) {
-
-    if (path) {
-      path = path.split(/[\]\.]+|\[|\]/g);
-    } else {
-      path = [];
-    }
-
-    path = _.compact(path);
-
-    if (!startingReference) {
-      return null;
-    }
-    // This loop has to ascend
-    for (var i = 0; i < path.length; i++) {
-      if (
-        //typeof startingReference === 'undefined' ||
-        !startingReference ||
-        typeof startingReference[path[i]] === 'undefined' ||
-        typeof startingReference[path[i]] === null
-      ) {
-        return null; // prevent empty errors being thrown upstream
-      } else {
-        startingReference = startingReference[
-          typeof path[i] === 'string' ? path[i] : parseInt(path[i])
-        ];
-      }
-    }
-    return startingReference;
-  };
-
+  var dryify = require("dryify");
+  var getval = dryify.getval;
 
   var solution = {
 
@@ -76,17 +44,17 @@
 
         return {
 
-          profileName1: getDeepObj(profile1, "abbreviated_name"),
-          profileHref1: "/users/" + getDeepObj(profile1, "slug"),
-          profileBg1: getDeepObj(profile1, "avatar.tiny.url"),
+          profileName1: getval(profile1, "abbreviated_name"),
+          profileHref1: "/users/" + getval(profile1, "slug"),
+          profileBg1: getval(profile1, "avatar.tiny.url"),
 
-          profileName2: getDeepObj(profile2, "abbreviated_name"),
-          profileHref2: "/users/" + getDeepObj(profile2, "slug"),
-          profileBg2: getDeepObj(profile2, "avatar.tiny.url"),
+          profileName2: getval(profile2, "abbreviated_name"),
+          profileHref2: "/users/" + getval(profile2, "slug"),
+          profileBg2: getval(profile2, "avatar.tiny.url"),
 
           eventType: eventType,
-          taskHref: "/tasks/" + getDeepObj(task, "slug"),
-          taskName: getDeepObj(task, "name")
+          taskHref: "/tasks/" + getval(task, "slug"),
+          taskName: getval(task, "name")
         };
       });
 
